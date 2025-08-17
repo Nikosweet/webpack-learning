@@ -1,3 +1,46 @@
-.text {
-  color:wheat
+.header {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightblue;
+  height: 100px;
+  padding: 0px 40px;
+  .list {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    .shopLink {
+      display: flex;
+      align-items: center;
+      .logo {
+        font-weight: 700px;
+        font-size: 35px;
+        color: black;
+      }
+    }
+    .categories {
+
+    }
+    .filter {
+      background-color: white;
+      height: 40px;
+      padding: 0px 15px;
+      font-size: 20px;
+      width: 700px;
+      border-radius: 20px;
+    }
+  }
+  .nav {
+    display: flex;
+    gap: 20px;
+
+    .login {
+
+    }
+
+    .basket {
+      
+    }
+  }
 }
