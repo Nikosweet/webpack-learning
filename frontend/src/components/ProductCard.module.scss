@@ -1,0 +1,57 @@
+.card {
+  width: 200px;
+  height: 450px;
+  font-size: 14px;
+  .img {
+    width: 200px;
+    height: 250px;
+  }
+  .price {
+    color: rgb(140, 188, 204);
+  }
+  .manufacturer {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+    max-width: 200px;
+    overflow: hidden;
+    margin: 8px 0;
+    
+    .manufName {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-shrink: 1;
+      min-width: 0;
+      margin: 0;
+    }
+    
+    .manufProduct {
+      color: rgb(180, 180, 180);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-shrink: 1;
+      min-width: 0;
+      margin: 0;
+    }
+  }
+  .rating {
+    display: flex;
+    gap: 4px;
+    margin: 8px 0;
+    .reviews {
+      color: rgb(180, 180, 180);
+    }
+  }
+  .order {
+    width: 100%;
+    padding: 10px;
+    background-color: #2c6b8f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+}

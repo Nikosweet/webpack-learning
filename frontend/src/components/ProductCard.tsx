@@ -1,4 +1,4 @@
-import * as classes from './App.module.scss'
+import * as classes from './ProductCard.module.scss'
 
 type Props = {
   img: string,
@@ -12,22 +12,23 @@ type Props = {
 export default function ProductCard(props: Props) {
   const {img, price, name, product, estimation, reviews} = props
 
+
   return (
     <article className={classes.card}>
       <img src={img} alt="" className={classes.img}/>
       <h4 className={classes.price}>{price}</h4>
       <h4 className={classes.manufacturer}>
         <p className={classes.manufName}>{name}</p>
-        <p className={classes.manufProduct}>{product}</p>
+        <p className={classes.manufProduct}>/ {product}</p>
       </h4>
-      <h4>
-        <p className={classes.estimation}>
+      <h4 className={classes.rating}>
+        <p>
           <img src="" alt="" />
           {estimation}
         </p>
-        <p className={classes.reviews}>{reviews}</p>
+        <p className={classes.reviews}>/ {reviews}</p>
       </h4>
-      <button className={classes.order}>Заказать</button>
+      <button className={classes.order}>Добавить в корзину</button>
     </article>
   )
 }
