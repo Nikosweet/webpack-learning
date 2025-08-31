@@ -12,7 +12,7 @@ CREATE TABLE buyer (
 CREATE TABLE buyerToken (
   id INT NOT NULL REFERENCES buyer,
   refreshToken VARCHAR(255) NOT NULL
-)
+);
 
 CREATE TABLE seller (
   id SERIAL PRIMARY KEY,
@@ -27,7 +27,7 @@ CREATE TABLE seller (
 CREATE TABLE sellerToken (
   id INT NOT NULL REFERENCES seller,
   refreshToken VARCHAR(255) NOT NULL
-)
+);
 
 create TABLE product(
   product_id SERIAL PRIMARY KEY,

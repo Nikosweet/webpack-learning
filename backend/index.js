@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const sellerRouter = require('./router/seller.router');
 const productRouter = require('./router/product.router');
 const buyerRouter = require('./router/buyer.router');
-
+const errorMiddleware = require('./middlewares/error.middleware');
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use('/api/seller', sellerRouter);
 app.use('/api/product', productRouter);
 app.use('/api/buyer', buyerRouter);
-
+app.use(errorMiddleware)
 
 const start = async () => {
   try {
