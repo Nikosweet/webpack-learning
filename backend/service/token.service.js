@@ -3,11 +3,8 @@ const db = require('../db')
 
 class TokenService {
   generateBuyerTokens(payload) {
-    console.log('refresh')
      const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {expiresIn: '30m'})
-     console.log('refresh1')
      const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {expiresIn: '30d'})
-     console.log('refresh2')
      return {
       accessToken,
       refreshToken
@@ -40,6 +37,29 @@ class TokenService {
     }
     const token = await db.query('INSERT INTO buyerToken (id, refreshToken) values ($1, $2) RETURNING *', [buyerId, refreshToken])
     return token
+  }
+
+  async removeToken(refreshToken) {
+    const tokenData = await db.query('DELETE FROM buyertoken WHERE refreshtoken = $1 RETURNING *', [refreshToken])
+    return tokenData.rows[0]
+  }
+
+  validateAccessToken(token) {
+    try {
+      const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET)
+      return userData
+    } catch(e) {
+      return null;
+    }
+  }
+
+  validateRefreshToken(token) {
+    try {
+      const userData = jwt.verify(token, process.env.JWT_REFRESH_SECRET)
+      return userData
+    } catch(e) {
+      return null
+    }
   }
 }
 
