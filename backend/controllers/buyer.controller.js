@@ -5,12 +5,16 @@ const tokenService = require('../service/token.service')
 const mailService = require('../service/mail.service')
 const UserDto = require('../dtos/user.dto')
 const ApiError = require('../exceptions/api.error')
-
+const { validationResult } = require('express-validator')
 
 const createError = require('http-errors')
 class BuyerContoller {
   async registration(req, res, next) {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return next(ApiError.BadRequest('Ошибка валидации данных', errors.array()))
+      }
       const {mail, password} = req.body
       const candidate = await db.query('SELECT * FROM buyer WHERE mail = $1', [mail])
       if (candidate.rows.length === 0) {
