@@ -39,8 +39,13 @@ class TokenService {
     return token
   }
 
-  async removeToken(refreshToken) {
+  async removeBuyerToken(refreshToken) {
     const tokenData = await db.query('DELETE FROM buyertoken WHERE refreshtoken = $1 RETURNING *', [refreshToken])
+    return tokenData.rows[0]
+  }
+
+  async removeSellerToken(refreshToken) {
+    const tokenData = await db.query('DELETE FROM sellertoken WHERE refreshtoken = $1 RETURNING *', [refreshToken])
     return tokenData.rows[0]
   }
 
