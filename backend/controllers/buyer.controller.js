@@ -109,7 +109,6 @@ class BuyerContoller {
       next(e)
     }
   }
-
 }
 
 module.exports = new BuyerContoller()

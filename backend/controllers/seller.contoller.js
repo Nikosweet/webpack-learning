@@ -91,7 +91,7 @@ try {
       if(!userData || !tokenFromDb.rows.length) {
         throw ApiError.UnathorizedError()
       }
-      
+
       const seller = await db.query('SELECT * FROM seller WHERE id = $1', [userData.id])
       const userDto = new UserDto(seller.rows[0]);
       const tokens = tokenService.generateSellerTokens({...userDto});
