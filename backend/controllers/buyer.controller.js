@@ -15,7 +15,7 @@ class BuyerContoller {
       if (!errors.isEmpty()) {
         return next(ApiError.BadRequest('Ошибка валидации данных', errors.array()))
       }
-      const {mail, password} = req.body
+      const {mail, password,} = req.body
       const candidate = await db.query('SELECT * FROM buyer WHERE mail = $1', [mail])
       if (candidate.rows.length === 0) {
         const hashPassword = await bcrypt.hash(password, 3)
@@ -61,7 +61,7 @@ class BuyerContoller {
   async logout(req, res, next) {
     try {
       const {refreshToken} = req.cookies;
-      const token = await tokenService.removeToken(refreshToken)
+      const token = await tokenService.removeBuyerToken(refreshToken)
       res.clearCookie('refreshToken');
       return res.json(token);
     } catch(e) {
@@ -110,14 +110,6 @@ class BuyerContoller {
     }
   }
 
-
-  async getBuyers(req, res, next) {
-    try {
-      res.json(['346', '345'])
-    } catch(e) {
-      next(e)
-    }
-  }
 }
 
 module.exports = new BuyerContoller()
